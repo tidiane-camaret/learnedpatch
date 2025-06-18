@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: learnedpatch
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib>=3.10.3
+Requires-Dist: medsegbench>=1.0.0
+Requires-Dist: numpy>=2.2.6
+Requires-Dist: pyqt6>=6.9.1
+
+Exploring performance of different patching methods for segmentation of large images.
+
+
+
+
+
+Data: https://github.com/zekikus/MedSegBench 
+
+
+
+
+
+1rst step : 
+find images where patch-based segmentation takes a substential amout of forward pass time. 
+
+2nd step : 
+Compare heuristics for patching strategies.

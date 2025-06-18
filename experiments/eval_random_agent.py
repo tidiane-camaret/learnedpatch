@@ -1,5 +1,7 @@
 import numpy as np
-from learnedpatch.src.patcher import PatchSelectionEnv, dice_score
+import sys
+sys.path.append("/work/dlclarge2/ndirt-SegFM3D/learnedpatch")  # Adjust the path as necessary to import medsegbench
+from src.patcher import PatchSelectionEnv, dice_score
 
 # Dummy image and mask (replace with real data as needed)
 image = np.zeros((256, 256))
