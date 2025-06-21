@@ -8,3 +8,6 @@ __pycache__/
 *.pywz
 *.pyzw
 *.pyzwz
+src/__pycache__/patcher.cpython-312.pyc
+src/learnedpatch.egg-info/requires.txt
+
