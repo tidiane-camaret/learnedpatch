@@ -4,10 +4,13 @@ Version: 0.1.0
 Summary: Add your description here
 Requires-Python: >=3.10
 Description-Content-Type: text/markdown
+Requires-Dist: gym>=0.26.2
 Requires-Dist: matplotlib>=3.10.3
 Requires-Dist: medsegbench>=1.0.0
 Requires-Dist: numpy>=2.2.6
 Requires-Dist: pyqt6>=6.9.1
+Requires-Dist: shimmy>=2.0.0
+Requires-Dist: stable-baselines3[extra]>=2.6.0
 
 Exploring performance of different patching methods for segmentation of large images.
 
