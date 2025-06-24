@@ -1,4 +1,4 @@
-learnedpatch.egg-info/
+*.egg-info/
 __pycache__/
 *.pyc
 *.pyo
@@ -10,4 +10,5 @@ __pycache__/
 *.pyzwz
 src/__pycache__/patcher.cpython-312.pyc
 src/learnedpatch.egg-info/requires.txt
-
+results/
+.ipynb_checkpoints/
