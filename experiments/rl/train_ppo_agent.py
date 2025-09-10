@@ -8,7 +8,6 @@ sys.path.append("/work/dlclarge2/ndirt-SegFM3D/learnedpatch")  # Adjust the path
 from src.patchselectionenv import GymPatchSelectionEnv, dice_score
 
 from medsegbench import Promise12MSBench
-import torch.utils.data as data
 import torch
 import torchvision.transforms.v2 as transforms
 
@@ -26,12 +25,12 @@ mask_list = [train_dataset[i][1] for i in range(len(train_dataset))]
 patch_size = (32, 32)
 max_steps = 10
 
-env = GymPatchSelectionEnv(image_list, mask_list, patch_size, max_steps)
+env = GymPatchSelectionEnv(image_list, mask_list, crop_transform, patch_size, max_steps)
 
-checkpoint_callback = CheckpointCallback(save_freq=1000, save_path="results/ppo_learnedpatch")  
+checkpoint_callback = CheckpointCallback(save_freq=10000, save_path="results/ppo_learnedpatch")  
 # Train PPO agent
 model = PPO("MlpPolicy", env, verbose=1)
-model.learn(total_timesteps=20000, callback=checkpoint_callback)
+model.learn(total_timesteps=500000, callback=checkpoint_callback)
 
 # Evaluate
 obs = env.reset()

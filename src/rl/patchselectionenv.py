@@ -10,9 +10,9 @@ def dice_score(pred, target, eps=1e-6):
     return (2. * intersection + eps) / (union + eps)
 
 class GymPatchSelectionEnv(gym.Env):
-    def __init__(self, image_list, mask_list, patch_size, max_steps):
+    def __init__(self, image_list, mask_list, transform, patch_size, max_steps):
         super().__init__()
-        self.env = PatchSelectionEnv(image_list, mask_list, patch_size, max_steps)
+        self.env = PatchSelectionEnv(image_list, mask_list, transform, patch_size, max_steps)
         self.image = image_list[0][0]
         self.mask = mask_list[0][0]
         self.patch_size = patch_size
@@ -32,7 +32,7 @@ class GymPatchSelectionEnv(gym.Env):
             dtype=np.float32
         )
 
-    def reset(self):
+    def reset(self, seed=None, options=None):
         obs = self.env.reset()
         return self._obs_to_array(obs)
 
@@ -49,7 +49,7 @@ class GymPatchSelectionEnv(gym.Env):
         ], dim=0)
     
 class PatchSelectionEnv:
-    def __init__(self, image_list, mask_list, patch_size, max_steps):
+    def __init__(self, image_list, mask_list, transform, patch_size, max_steps):
         # image: input image (e.g., numpy array)
         # mask: ground truth segmentation mask
         # patch_size: (height, width) of each patch
@@ -58,6 +58,7 @@ class PatchSelectionEnv:
         self.mask_list = mask_list
         self.patch_size = patch_size
         self.max_steps = max_steps
+        self.transform = transform
 
         self.reset()
 
@@ -66,6 +67,9 @@ class PatchSelectionEnv:
         self.index = random.randint(0, len(self.image_list) - 1)
         self.image = self.image_list[self.index][0]
         self.mask = self.mask_list[self.index][0]
+        if self.transform:
+            self.image = self.transform(self.image)
+            self.mask = self.transform(self.mask)
         self.current_mask = torch.zeros_like(self.mask)
         self.steps = 0
         self.covered = torch.zeros_like(self.mask, dtype=torch.bool)

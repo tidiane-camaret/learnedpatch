@@ -1277,6 +1277,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "gym" },
+    { name = "gymnasium" },
     { name = "ipykernel" },
     { name = "jupyter" },
     { name = "matplotlib" },
@@ -1291,6 +1292,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "gym", specifier = ">=0.26.2" },
+    { name = "gymnasium", specifier = ">=1.1.1" },
     { name = "ipykernel", specifier = ">=6.29.5" },
     { name = "jupyter", specifier = ">=1.1.1" },
     { name = "matplotlib", specifier = ">=3.10.3" },
